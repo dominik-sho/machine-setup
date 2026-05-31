@@ -1,16 +1,11 @@
-- hosts: localhost
-  connection: local
-  become: true
+- name: Update apt cache
+  apt:
+    update_cache: true
 
-  tasks:
-    - name: Update apt cache
-      apt:
-        update_cache: true
-
-    - name: Install packages
-      apt:
-        name:
-          - git
-          - stow
-          - tmux
-        state: present
+- name: Install packages
+  apt:
+    name:
+      - git
+      - stow
+      - tmux
+    state: present
