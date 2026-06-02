@@ -21,4 +21,4 @@ fi
 cd "${INSTALL_DIR}"
 
 echo "Install..."
-./bootstrap-local.sh
+./bootstrap-ansible.sh
