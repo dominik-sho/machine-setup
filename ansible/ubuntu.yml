@@ -1,14 +1,12 @@
-- name: Update apt cache
-  apt:
-    update_cache: true
-
 - name: Install packages
+  become: true
   apt:
     name:
       - git
       - stow
       - tmux
     state: present
+    update_cache: true
 
 - name: Restow dotfiles
   command: stow --restow -t {{ ansible_user_dir }} */
