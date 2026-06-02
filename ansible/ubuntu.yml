@@ -9,3 +9,8 @@
       - stow
       - tmux
     state: present
+
+- name: Restow dotfiles
+  command: stow --restow -t {{ ansible_user_dir }} */
+  args:
+    chdir: "{{ ansible_user_dir }}/machine-setup/dotfiles"
