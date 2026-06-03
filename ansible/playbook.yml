@@ -1,8 +1,9 @@
-- hosts: localhost
+---
+- name: Setup local Linux environment
+  hosts: localhost
   connection: local
-  gather_facts: true
 
   tasks:
     - include_tasks: ubuntu.yml
-      when: ansible_distribution == "Ubuntu"
+      when: ansible_facts['distribution'] == "Ubuntu"
 
