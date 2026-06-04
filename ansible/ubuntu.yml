@@ -13,5 +13,5 @@
 - name: Restow dotfiles
   shell: stow --restow -t {{ ansible_facts['user_dir'] }} */
   args:
-    chdir: "{{ ansible_facts['user_dir'] }}/machine-setup/dotfiles"
+    chdir: "{{ ansible_facts['user_dir'] }}/machine-setup/env"
   become: false
