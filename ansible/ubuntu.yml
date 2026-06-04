@@ -4,8 +4,12 @@
     name:
       - git
       - stow
-      - tmux
+      - curl
+      - openssh-client
       - vim
+      - tmux
+      - fzf
+      - tree
     state: present
     update_cache: true
   become: true
