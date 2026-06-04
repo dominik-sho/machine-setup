@@ -6,8 +6,7 @@ Personal machine bootstrap and configuration.
 
 After a fresh Ubuntu installation:
 ```
-cd machine-setup
-./bootstrap.sh
+wget -qO- https://raw.githubusercontent.com/dominik-sho/machine-setup/main/bootstrap.sh | bash
 ```
 
 ## What it does
