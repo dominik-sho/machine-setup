@@ -10,9 +10,45 @@
       - tmux
       - fzf
       - tree
+      # Microsoft apt
+      - gpg
+      - apt-transport-https
     state: present
     update_cache: true
   become: true
+
+
+- name: Ensure apt keyrings directory exists
+  file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: "0755"
+  become: true
+  
+
+- name: Download Microsoft signing key
+  get_url:
+    url: https://packages.microsoft.com/keys/microsoft.asc
+    dest: /etc/apt/keyrings/microsoft.asc
+    mode: "0644"
+  beocme: true
+
+
+- name: Add VS Code apt repository
+  apt_repository:
+    repo: "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main"
+    filename: vscode
+    state: present
+  beocme: true
+
+
+- name: Install VS Code
+  apt:
+    name: code
+    state: present
+    update_cache: true
+  beocme: true
+
 
 - name: Restow dotfiles
   shell: stow --restow -t {{ ansible_facts['user_dir'] }} */
