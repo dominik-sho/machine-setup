@@ -44,7 +44,7 @@
   become: true
   get_url:
     url: https://packages.microsoft.com/keys/microsoft.asc
-    dest: /etc/apt/keyrings/microsoft.asc
+    dest: /tmp/microsoft.asc
     mode: "0644"
 
 
