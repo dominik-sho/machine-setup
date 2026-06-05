@@ -84,7 +84,7 @@
 
 - name: Install missing VS Code extensions
   command:
-    cmd: code --install-extensions {{ item }}
+    cmd: code --install-extension {{ item }}
   loop: "{{ lookup('file', '../vscode/extensions.txt').splitlines() }}"
   when: item not in installed_extensions.stdout_lines
 
