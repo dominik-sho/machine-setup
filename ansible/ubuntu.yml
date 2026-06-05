@@ -56,7 +56,7 @@
 
 
 - name: Add VS Code repository
-  become: trueW
+  become: true
   copy:
     dest: /etc/apt/sources.list.d/vscode.sources
     content: |
