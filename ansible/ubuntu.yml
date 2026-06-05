@@ -76,6 +76,18 @@
     update_cache: true
 
 
+- name: Get installed VS Code extensions
+  command: code --list-extensions
+  register: installed_extensions
+  changed_when: false
+
+
+- name: Install missing VS Code extensions
+  command:
+    cmd: code --install-extensions {{ item }}
+  loop: "{{ lookup('file', '../vscode/extensions.txt').splitlines() }}"
+  when: item not in installed_extensions.stdout_lines
+
 - name: Restow dotfiles
   become: false
   shell: stow --restow -t {{ ansible_facts['user_dir'] }} */
