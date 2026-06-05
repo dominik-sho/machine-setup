@@ -38,4 +38,4 @@ set smartindent
 " Use Space as the leader key
 let mapleader = " "
 " Clear search highlights with Escape
-nnoremap
+nnoremap <silent> <leader>h : :nohlsearch<CR>
