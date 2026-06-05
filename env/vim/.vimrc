@@ -1,5 +1,5 @@
 " General
-sytnax on
+syntax on
 
 " UI
 set number
