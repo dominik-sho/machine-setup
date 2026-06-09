@@ -88,6 +88,34 @@
   loop: "{{ lookup('file', '../vscode/extensions.txt').splitlines() }}"
   when: item not in installed_extensions.stdout_lines
 
+
+- name: Install nvm
+  become: false
+  shell: >
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
+  args:
+    creates: "{{ ansible_facts['user_dir'] }}/.nvm/nvm.sh"
+
+
+- name: Install latest LTS Node.js
+  shell: |
+    source "{{ ansible_facts['user_dir'] }}/.nvm/nvm.sh"
+    nvm install --lts
+    nvm use --lts
+    nvm alias default lts/*
+  args:
+    executable: /bin/bash
+  changed_when: false
+
+
+- name: Install Codex CLI
+  shell: |
+    source "{{ ansible_facts['user_dir'] }}/.nvm/nvm.sh"
+    npm install -g @openai/codex
+  args:
+    executable: /bin/bash
+
+
 - name: Restow dotfiles
   become: false
   shell: stow --restow -t {{ ansible_facts['user_dir'] }} */
